@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="Levin" class="com.yanpao.Cars.Automobile">
+        <constructor-arg ref="Toyota" />
+        <constructor-arg name="name" value="Levin"/>
+        <constructor-arg name="cost" value="100000"/>
+    </bean>
+
+    <bean id="Toyota" class="com.yanpao.Cars.Brand">
+        <constructor-arg name="name" value="Toyota"/>
+        <constructor-arg name="nation" value="Japan"/>
+    </bean>
+
+
+
+<!--    <bean id="DreamWing" class="com.yanpao.Cars.Motorcycle">-->
+<!--        <constructor-arg name="brand" value="Honda"/>-->
+<!--        <constructor-arg name="name" value="DreamWing"/>-->
+<!--        <constructor-arg name="cost" value="50000"/>-->
+<!--    </bean>-->
+
+</beans>
