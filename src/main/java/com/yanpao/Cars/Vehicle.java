@@ -1,6 +1,6 @@
 package com.yanpao.Cars;
 
-public interface Car {
+public interface Vehicle {
 
     Brand GetBrand();
 

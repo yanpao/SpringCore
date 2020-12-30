@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="Fit" class="com.yanpao.Cars.Automobile">
+        <constructor-arg ref="Honda" />
+        <constructor-arg name="name" value="Fit"/>
+        <constructor-arg name="cost" value="80000"/>
+    </bean>
+
+    <bean id="Civic" class="com.yanpao.Cars.Automobile">
+        <constructor-arg ref="Honda" />
+        <constructor-arg name="name" value="Civic"/>
+        <constructor-arg name="cost" value="80000"/>
+    </bean>
+
+    <bean id="Honda" class="com.yanpao.Cars.Brand">
+        <constructor-arg name="name" value="Honda"/>
+        <constructor-arg name="nation" value="Japan"/>
+    </bean>
+
+</beans>

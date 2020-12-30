@@ -1,10 +1,7 @@
 package com.yanpao;
 
 import com.yanpao.Cars.Brand;
-import com.yanpao.Cars.Car;
-import com.yanpao.Configuration.CamryConfiguration;
-import com.yanpao.Configuration.LevinConfiguration;
-import org.springframework.context.ApplicationContext;
+import com.yanpao.Configuration.Mustang;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
@@ -12,18 +9,25 @@ public class SpringCoreApp
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        ApplicationContext coreApplicationContext = new AnnotationConfigApplicationContext(LevinConfiguration.class, CamryConfiguration.class);
+        AnnotationConfigApplicationContext coreApplicationContext = new AnnotationConfigApplicationContext();
+        coreApplicationContext.scan("com.yanpao");
+        coreApplicationContext.refresh();
 
-        Car car = coreApplicationContext.getBean("Camry", Car.class);
-        System.out.println( car.GetBrand().GetName()+":"+car.GetBrand().GetNation()+":" +car.GetName()+":"+car.GetCost());
+        try {
+            Brand toyota = coreApplicationContext.getBean("Toyota", Brand.class);
+            System.out.println(toyota.GetName() + ":" + toyota.GetNation());
 
-        Brand brand = coreApplicationContext.getBean("Toyota",Brand.class);
-        System.out.println(brand.GetName()+":"+brand.GetNation());
+            Mustang mustang = coreApplicationContext.getBean("mustang", Mustang.class);
+            System.out.println(mustang.GetName()+ ":" + mustang.GetCost()
+                    + ":" + mustang.GetBrand().GetName()+ ":" + mustang.GetBrand().GetNation());
 
-//        Car DreamWing = coreApplicationContext.getBean("DreamWing", Car.class);
-//        System.out.println( DreamWing.GetBrand()+":" +DreamWing.GetName()+":"+DreamWing.GetCost());
-
+            Brand honda = coreApplicationContext.getBean("Honda", Brand.class);
+            System.out.println(honda.GetName() + ":" + honda.GetNation());
+        }
+        catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
 
     }
 }

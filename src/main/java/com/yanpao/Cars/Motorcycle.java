@@ -1,6 +1,6 @@
 package com.yanpao.Cars;
 
-public class Motorcycle implements Car {
+public class Motorcycle implements Vehicle {
 
     private Brand Brand;
     private String Name;
@@ -13,16 +13,13 @@ public class Motorcycle implements Car {
         Cost=cost;
     }
 
-    @Override
     public Brand GetBrand() {
         return Brand;
     }
 
-    @Override
     public String GetName() {
         return Name;
     }
 
-    @Override
     public Integer GetCost(){return Cost;}
 }
