@@ -1,4 +1,4 @@
-package com.yanpao.Configuration;
+package com.yanpao.Configuration.AutomobileConfig;
 
 import com.yanpao.Cars.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
