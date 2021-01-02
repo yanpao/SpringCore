@@ -25,4 +25,10 @@ public class JapaneseBrandConfig {
         return new Brand("Toyota3","Japan");
     }
 
+    @Bean
+    public Brand Honda()
+    {
+        return new Brand("Honda","Japan");
+    }
+
 }

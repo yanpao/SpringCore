@@ -5,19 +5,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *使用@Component等注解（@Repository、@Service、@Controller）注释类时，Spring容器会直接
- * 将这些类转换成为Bean放入容器；如果是业务类代码，可以和项目剥离的类，最好不要使用这种方法
+ *
  */
 @Component
-public class Mustang{
+public class ModelX {
 
     @Autowired
     private Brand Ford;
 
-    private final String name = "Mustang";
-    private final Integer cost = 300000;
+    private final String name = "ModelX";
+    private final Integer cost = 250000;
 
-    public Mustang()
+    public ModelX()
     {
 
     }
@@ -31,7 +30,4 @@ public class Mustang{
     }
 
     public Integer GetCost(){return cost;}
-
-
-
 }
