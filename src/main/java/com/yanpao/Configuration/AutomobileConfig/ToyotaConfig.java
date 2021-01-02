@@ -39,6 +39,7 @@ public class ToyotaConfig {
 
     /**
      * 注入方式2：在@Bean函数的参数中，可以指定需要的Bean的name，Spring会自动装配进入，而且也有可能存在为空的情况
+     * <p>内部怎么调用？？？？</p>
      */
     @Bean
     public Automobile Levin(Brand Toyota2)
