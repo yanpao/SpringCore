@@ -2,10 +2,7 @@ package com.yanpao;
 
 import com.yanpao.Cars.Brand;
 import com.yanpao.Cars.Vehicle;
-import com.yanpao.Configuration.AutomobileConfig.HondaConfig;
-import com.yanpao.Configuration.AutomobileConfig.ModelX;
-import com.yanpao.Configuration.AutomobileConfig.Mustang;
-import com.yanpao.Configuration.AutomobileConfig.ToyotaConfig;
+import com.yanpao.Configuration.AutomobileConfig.*;
 import com.yanpao.Configuration.BrandConfig.AmericanBrandConfig;
 import com.yanpao.Configuration.BrandConfig.GermanicBrandConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -28,13 +25,15 @@ public class SpringCoreApp
         /*方式3：注册，可以注册@Component类和@Configuration类
         * 注意：前面并未注册ToyotaConfig的依赖类JapaneseBrandConfig，在ToyotaConfig中使用@Import引入了JapaneseBrandConfig，
         * Spring会将JapaneseBrandConfig注册进入容器*/
-        coreApplicationContext.register(Mustang.class,ToyotaConfig.class, HondaConfig.class);
+        coreApplicationContext.register(Mustang.class, Aventador.class,ToyotaConfig.class, HondaConfig.class);
 
         /*方式4：扫描，扫描指定的包*/
         coreApplicationContext.scan("com.yanpao.Configuration.LuxuryAutoConfig");
 
         /*必须要刷新，否则不会起效*/
         coreApplicationContext.refresh();
+
+        System.out.println("扫描和注册完成，开始输出");
 
         try {
 
@@ -73,11 +72,13 @@ public class SpringCoreApp
             ModelX modelX = coreApplicationContext.getBean("modelX",ModelX.class);
             System.out.println(modelX.GetName()+ ":" + modelX.GetCost()
                     + ":" + modelX.GetBrand().GetName()+ ":" + modelX.GetBrand().GetNation());
-
         }
         catch (Exception ex)
         {
             System.out.println(ex.getMessage());
+        }
+        finally {
+            coreApplicationContext.close();
         }
 
     }

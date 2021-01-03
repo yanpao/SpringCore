@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- *
+ *用来测试没有注册的Bean
  */
 @Component
 public class ModelX {
