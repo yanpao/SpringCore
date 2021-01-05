@@ -64,6 +64,13 @@ public class ToyotaConfig {
         return new Automobile(Toyota3,"Corolla",12000);
     }
 
+
+    @Bean
+    public Automobile setAutomobile(Brand Toyota2)
+    {
+        return new Automobile(Toyota2,"HighLander",230000);
+    }
+
     /**
      * 多次返回都一样
      */
