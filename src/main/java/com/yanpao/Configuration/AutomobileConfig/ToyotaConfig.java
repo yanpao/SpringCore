@@ -15,10 +15,12 @@ import org.springframework.context.annotation.Import;
  *     <li>@Bean可以相互依赖，使用CGLIB调用，单例情况下只会存在一个由容器管理的对象</li>
  *     <li>@Bean的方法是不能不能被声明为private和final</li>
  * </ul>
+ *
  * <p>一般情况建议使用Full Configuration mode</p>
  *
  * <p>
- *     如果Spring扫描了需要的包并在容器中注册相应的Bean，@Import可以不用加，虽然IDE会警告；但是Spring没注册相关的Bean，会报UnsatisfiedDependencyException
+ *     如果Spring扫描了需要的包并在容器中注册相应的Bean，@Import可以不用加，虽然IDE会警告；
+ *     但是Spring没注册相关的Bean，且没有@Import，会报UnsatisfiedDependencyException
  * </p>
  */
 @Configuration
@@ -48,7 +50,7 @@ public class ToyotaConfig {
     }
 
     /**
-     * 注入方式3：使用构造函数注入，Spring推荐方式
+     * 注入方式3：使用构造函数注入
      */
     private Brand Toyota3;
     public ToyotaConfig(Brand Toyota3)

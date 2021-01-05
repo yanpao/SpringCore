@@ -2,10 +2,10 @@ package com.yanpao.Cars;
 
 public interface Vehicle {
 
-    Brand GetBrand();
+    Brand getBrand();
 
-    String GetName();
+    String getName();
 
-    Integer GetCost();
+    Integer getCost();
 
 }

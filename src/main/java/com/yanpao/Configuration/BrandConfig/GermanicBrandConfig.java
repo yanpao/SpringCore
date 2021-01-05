@@ -24,7 +24,4 @@ public class GermanicBrandConfig {
     {
         return new Brand("BenZ","Germany");
     }
-
-
-
 }

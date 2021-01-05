@@ -47,8 +47,8 @@ public class SpringCoreApp
             Map<String, Vehicle> allVehicles = coreApplicationContext.getBeansOfType(Vehicle.class);
             for (Vehicle vehicle: allVehicles.values())
             {
-                System.out.println(vehicle.GetName()+ ":" + vehicle.GetCost()
-                        + ":" + vehicle.GetBrand().GetName()+ ":" + vehicle.GetBrand().GetNation());
+                System.out.println(vehicle.getName()+ ":" + vehicle.getCost()
+                        + ":" + vehicle.getBrand().GetName()+ ":" + vehicle.getBrand().GetNation());
             }
 
             System.out.println("-------------------------------------------------------");

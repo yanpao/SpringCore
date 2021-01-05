@@ -6,6 +6,15 @@ public class Automobile implements Vehicle {
     private String Name;
     private Integer Cost;
 
+    public Automobile()
+    {
+    }
+
+    public Automobile(Brand brand)
+    {
+        Brand=brand;
+    }
+
     public Automobile(Brand brand,String name,Integer cost)
     {
         Brand=brand;
@@ -13,13 +22,25 @@ public class Automobile implements Vehicle {
         Cost=cost;
     }
 
-    public Brand GetBrand() {
+    public void setBrand(com.yanpao.Cars.Brand brand) {
+        Brand = brand;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public void setCost(Integer cost) {
+        Cost = cost;
+    }
+
+    public Brand getBrand() {
         return Brand;
     }
 
-    public String GetName() {
+    public String getName() {
         return Name;
     }
 
-    public Integer GetCost(){return Cost;}
+    public Integer getCost(){return Cost;}
 }

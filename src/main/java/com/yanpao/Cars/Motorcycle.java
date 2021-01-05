@@ -13,13 +13,13 @@ public class Motorcycle implements Vehicle {
         Cost=cost;
     }
 
-    public Brand GetBrand() {
+    public Brand getBrand() {
         return Brand;
     }
 
-    public String GetName() {
+    public String getName() {
         return Name;
     }
 
-    public Integer GetCost(){return Cost;}
+    public Integer getCost(){return Cost;}
 }
