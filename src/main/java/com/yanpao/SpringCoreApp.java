@@ -25,7 +25,7 @@ public class SpringCoreApp
         /*方式3：注册，可以注册@Component类和@Configuration类
         * 注意：前面并未注册ToyotaConfig的依赖类JapaneseBrandConfig，在ToyotaConfig中使用@Import引入了JapaneseBrandConfig，
         * Spring会将JapaneseBrandConfig注册进入容器*/
-        coreApplicationContext.register(Mustang.class, Aventador.class,ToyotaConfig.class, HondaConfig.class);
+        coreApplicationContext.register(Mustang.class, Aventador.class,ToyotaConfig.class, HondaConfig.class, AutowireConfig.class);
 
         /*方式4：扫描，扫描指定的包*/
         coreApplicationContext.scan("com.yanpao.Configuration.LuxuryAutoConfig");
@@ -41,21 +41,27 @@ public class SpringCoreApp
             Map<String,Brand> allBrands = coreApplicationContext.getBeansOfType(Brand.class);
             for (Brand brand: allBrands.values())
             {
-                System.out.println(brand.GetName() + ":" + brand.GetNation());
+                System.out.println(brand.getName() + ":" + brand.getNation()+":"+brand.getBeanName());
             }
 
             Map<String, Vehicle> allVehicles = coreApplicationContext.getBeansOfType(Vehicle.class);
             for (Vehicle vehicle: allVehicles.values())
             {
                 System.out.println(vehicle.getName()+ ":" + vehicle.getCost()
-                        + ":" + vehicle.getBrand().GetName()+ ":" + vehicle.getBrand().GetNation());
+                        + ":" + vehicle.getBrand().getName()+ ":" + vehicle.getBrand().getNation());
             }
 
             System.out.println("-------------------------------------------------------");
 
             Mustang mustang = coreApplicationContext.getBean("mustang",Mustang.class);
-            System.out.println(mustang.GetName()+ ":" + mustang.GetCost()
-                    + ":" + mustang.GetBrand().GetName()+ ":" + mustang.GetBrand().GetNation());
+            System.out.println(mustang.getName()+ ":" + mustang.getCost()
+                    + ":" + mustang.getBrand().getName()+ ":" + mustang.getBrand().getNation());
+
+            /*容器注册@Configuration的时候，注册的名称是类名的驼峰小写，注册@Bean的时候是函数名*/
+            System.out.println("----------------测试自动注入的List-------------------");
+            AutowireConfig autowireConfig = coreApplicationContext.getBean("autowireConfig", AutowireConfig.class);
+            autowireConfig.autowireList();
+            autowireConfig.autowireBrand();
 
             System.out.println("----------------测试lite @Bean mode,返回不一样-------------------");
             HondaConfig hondaConfig = coreApplicationContext.getBean("hondaConfig",HondaConfig.class);
@@ -70,8 +76,10 @@ public class SpringCoreApp
             System.out.println("----------------找不到未注册的Bean-------------------");
             /*未扫描或者注册，所以找不到这个Bean*/
             ModelX modelX = coreApplicationContext.getBean("modelX",ModelX.class);
-            System.out.println(modelX.GetName()+ ":" + modelX.GetCost()
-                    + ":" + modelX.GetBrand().GetName()+ ":" + modelX.GetBrand().GetNation());
+            System.out.println(modelX.getName()+ ":" + modelX.getCost()
+                    + ":" + modelX.getBrand().getName()+ ":" + modelX.getBrand().getNation());
+
+
         }
         catch (Exception ex)
         {

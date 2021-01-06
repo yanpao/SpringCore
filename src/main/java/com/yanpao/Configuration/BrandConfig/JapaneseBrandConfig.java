@@ -1,11 +1,20 @@
 package com.yanpao.Configuration.BrandConfig;
 
 import com.yanpao.Cars.Brand;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class JapaneseBrandConfig {
+
+    @Bean
+    @Primary
+    public Brand Toyota()
+    {
+        return new Brand("Toyota","Japan");
+    }
 
     @Bean
     public Brand Toyota1()
@@ -14,6 +23,7 @@ public class JapaneseBrandConfig {
     }
 
     @Bean
+    @Qualifier("Toyota2_2")
     public Brand Toyota2()
     {
         return new Brand("Toyota2","Japan");

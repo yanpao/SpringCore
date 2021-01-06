@@ -1,6 +1,7 @@
 package com.yanpao.Configuration.AutomobileConfig;
 
 import com.yanpao.Cars.Brand;
+import com.yanpao.Cars.Vehicle;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
@@ -46,7 +47,7 @@ import org.springframework.stereotype.Component;
  * </p>
  */
 @Component
-public class Mustang implements InitializingBean, DisposableBean, ApplicationContextAware , BeanNameAware {
+public class Mustang implements Vehicle,InitializingBean, DisposableBean, ApplicationContextAware , BeanNameAware {
 
     @Autowired
     private Brand Ford;
@@ -68,15 +69,15 @@ public class Mustang implements InitializingBean, DisposableBean, ApplicationCon
         System.out.println("Mustang destroy");
     }
 
-    public Brand GetBrand() {
+    public Brand getBrand() {
         return Ford;
     }
 
-    public String GetName() {
+    public String getName() {
         return name;
     }
 
-    public Integer GetCost(){return cost;}
+    public Integer getCost(){return cost;}
 
     /**
      * 容器在调用构造函数新建这个Bean后，会回调setApplicationContext方法

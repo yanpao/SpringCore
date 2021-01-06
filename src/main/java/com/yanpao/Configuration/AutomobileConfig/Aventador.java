@@ -1,6 +1,7 @@
 package com.yanpao.Configuration.AutomobileConfig;
 
 import com.yanpao.Cars.Brand;
+import com.yanpao.Cars.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ import javax.annotation.PreDestroy;
  * </p>
  */
 @Component
-public class Aventador {
+public class Aventador implements Vehicle {
 
     @Autowired
     private Brand Ford;
@@ -40,13 +41,13 @@ public class Aventador {
         System.out.println("Aventador destroy");
     }
 
-    public Brand GetBrand() {
+    public Brand getBrand() {
         return Ford;
     }
 
-    public String GetName() {
+    public String getName() {
         return name;
     }
 
-    public Integer GetCost(){return cost;}
+    public Integer getCost(){return cost;}
 }
