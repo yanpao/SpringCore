@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * 测试自动注入，@Autowired是按照类型自动注入的，如果容器中有多个相同类型的Bean，
+ * 测试自动注入，@Autowired是按照类型自动注入的，byType,如果容器中有多个相同类型的Bean，
  * <ul>
  *     <li>注入时如果使用@Qualifier指定了BeanName或者别名，直接注入，因为很明确；@Qualifier也可以使用在函数参数上</li>
  *     <li>如果没有指定名称，优先使用@Primary的Bean进行注入</li>
