@@ -58,10 +58,7 @@ public class SpringCoreApp
                     + ":" + mustang.getBrand().getName()+ ":" + mustang.getBrand().getNation());
 
             /*容器注册@Configuration的时候，注册的名称是类名的驼峰小写，注册@Bean的时候是函数名*/
-            System.out.println("----------------测试自动注入的List-------------------");
             AutowireConfig autowireConfig = coreApplicationContext.getBean("autowireConfig", AutowireConfig.class);
-            autowireConfig.autowireList();
-            autowireConfig.autowireBrand();
 
             System.out.println("----------------测试lite @Bean mode,返回不一样-------------------");
             HondaConfig hondaConfig = coreApplicationContext.getBean("hondaConfig",HondaConfig.class);

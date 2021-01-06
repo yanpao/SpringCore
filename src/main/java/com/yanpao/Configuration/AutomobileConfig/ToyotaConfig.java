@@ -22,13 +22,15 @@ import org.springframework.context.annotation.Import;
  *     如果Spring扫描了需要的包并在容器中注册相应的Bean，@Import可以不用加，虽然IDE会警告；
  *     但是Spring没注册相关的Bean，且没有@Import，会报UnsatisfiedDependencyException
  * </p>
+ *
+ * <p>这里还配置了一些@Autowired的方法，更多的见{@link AutowireConfig}</p>
  */
 @Configuration
 @Import(JapaneseBrandConfig.class)
 public class ToyotaConfig {
 
     /**
-     * 注入方式1：使用Autowired配合Bean的name注入，有可能Bean不在容器中，导致注入失败，此处报错，而且编译器不推荐这种方式
+     * 注入方式1：使用Autowired直接注入字段
      */
     @Autowired
     private Brand Toyota1;
@@ -50,7 +52,8 @@ public class ToyotaConfig {
     }
 
     /**
-     * 注入方式3：使用构造函数注入
+     * 注入方式3：使用构造函数注入，如果这个类只有一个构造函数的情况下，构造函数前的@Autowired可以不用加，如果
+     * 有多个，需要用@Autowired标注是注入哪一个构造函数
      */
     private Brand Toyota3;
     public ToyotaConfig(Brand Toyota3)
@@ -64,6 +67,22 @@ public class ToyotaConfig {
         return new Automobile(Toyota3,"Corolla",12000);
     }
 
+    /**
+     * 注入方式4：使用函数和@Autowired进行注入,函数可以是setter函数或者一般函数
+     */
+    private Brand honda;
+
+    @Autowired
+    public void setJapaneseBrand(Brand Honda)
+    {
+        this.honda=Honda;
+    }
+
+    @Bean
+    public Automobile Rav4()
+    {
+        return new Automobile(honda,"Rav4",12000);
+    }
 
     @Bean
     public Automobile setAutomobile(Brand Toyota2)

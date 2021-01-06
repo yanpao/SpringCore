@@ -9,8 +9,11 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class JapaneseBrandConfig {
 
+    /**
+     * 注意此处@Primary，如果使用@Primary，其他所有注入的地方，如果没有使用@Qualifier，都会被注入这个@Primary
+     */
     @Bean
-    @Primary
+    //@Primary
     public Brand Toyota()
     {
         return new Brand("Toyota","Japan");
