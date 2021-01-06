@@ -1,6 +1,7 @@
 package com.yanpao.Configuration.AutomobileConfig;
 
 import com.yanpao.Cars.Brand;
+import com.yanpao.Cars.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
  *用来测试没有注册的Bean
  */
 @Component
-public class ModelX {
+public class ModelX implements Vehicle {
 
     @Autowired
     private Brand Ford;
@@ -21,13 +22,13 @@ public class ModelX {
 
     }
 
-    public Brand GetBrand() {
+    public Brand getBrand() {
         return Ford;
     }
 
-    public String GetName() {
+    public String getName() {
         return name;
     }
 
-    public Integer GetCost(){return cost;}
+    public Integer getCost(){return cost;}
 }
