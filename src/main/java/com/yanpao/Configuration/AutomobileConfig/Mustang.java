@@ -3,13 +3,14 @@ package com.yanpao.Configuration.AutomobileConfig;
 import com.yanpao.Cars.Brand;
 import com.yanpao.Cars.Vehicle;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * 测试以下接口或者方式：
@@ -47,47 +48,30 @@ import org.springframework.stereotype.Component;
  * </p>
  */
 @Component
-public class Mustang implements Vehicle,InitializingBean, DisposableBean, ApplicationContextAware , BeanNameAware {
+public class Mustang implements Vehicle,
+        InitializingBean,
+        DisposableBean,
+        ApplicationContextAware,
+        BeanNameAware, BeanPostProcessor, BeanFactoryAware {
 
-    @Autowired
-    private Brand Ford;
-
-    private final String name = "Mustang";
-    private final Integer cost = 300000;
+    private Brand brand;
+    private String name = "Mustang";
+    private Integer cost = 300000;
 
     public Mustang()
     {
         System.out.println("Mustang Construct");
+        this.brand = new Brand("Changan","China");
     }
-
-    public void afterPropertiesSet()
-    {
-        System.out.println("Mustang afterPropertiesSet");
-    }
-
-    public void destroy() {
-        System.out.println("Mustang destroy");
-    }
-
-    public Brand getBrand() {
-        return Ford;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getCost(){return cost;}
 
     /**
-     * 容器在调用构造函数新建这个Bean后，会回调setApplicationContext方法
-     * @param applicationContext 创建这个Bean的Spring容器
-     * @throws BeansException
+     * Populate Properties就是为Spring的Bean自动注入依赖
      */
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException
-    {
-        System.out.println("ApplicationContextAware测试："+applicationContext.getApplicationName());
-    }
+//    @Autowired
+//    public void setBrand(Brand Ford) {
+//        System.out.println("Mustang Populate Properties :Ford");
+//        this.brand=Ford;
+//    }
 
     /**
      * 在容器容器设置Bean的属性之后，在回调初始化方法之前（init-method）调用setBeanName方法
@@ -96,8 +80,70 @@ public class Mustang implements Vehicle,InitializingBean, DisposableBean, Applic
      */
     public void setBeanName(String name) throws BeansException
     {
-        System.out.println("BeanNameAware测试"+name);
+        System.out.println("Mustang BeanNameAware setBeanName()");
     }
+
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException{
+        System.out.println("Mustang BeanFactoryAware setBeanFactory()");
+    }
+
+    /**
+     * 容器在调用构造函数新建这个Bean后，会回调setApplicationContext方法
+     * @param applicationContext 创建这个Bean的Spring容器
+     * @throws BeansException
+     */
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException
+    {
+        System.out.println("Mustang ApplicationContextAware setApplicationContext()");
+    }
+
+    @PostConstruct
+    public void init(){
+        System.out.println("Mustang PostConstruct");
+    }
+
+    public void afterPropertiesSet()
+    {
+        System.out.println("Mustang afterPropertiesSet");
+    }
+
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("Mustang PostProcess Before Initialization : " +  beanName);
+        return bean;
+    }
+
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("Mustang PostProcess After Initialization : " +  beanName);
+        return bean;
+    }
+
+    public void destroy() {
+        System.out.println("Mustang destroy");
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getCost(){return cost;}
+
+    public void setName(String name) {
+        System.out.println("Mustang setName()");
+        this.name = name;
+    }
+
+    public void setCost(Integer cost) {
+        System.out.println("Mustang cost()");
+        this.cost = cost;
+    }
+
+
+
+
 
 
 

@@ -30,12 +30,6 @@ public class Aventador implements Vehicle {
     private final String name = "Aventador";
     private final Integer cost = 8000000;
 
-    @PostConstruct
-    public void afterPropertiesSet()
-    {
-        System.out.println("Aventador afterPropertiesSet");
-    }
-
     @PreDestroy
     public void destroy() {
         System.out.println("Aventador destroy");
